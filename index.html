@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Intelligence Service Quote Calculator</title>
+    <style>
+        body {
+            font-family: 'Avenir Next', sans-serif;
+            background-color: #f5f6f8;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #644B7C, #A066AB, #C593A1, #D9BCCB);
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #1f1e1e;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size:14px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #f5f6f8;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #5e98f1;
+            outline: none;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .form-row .form-group:last-child {
+            margin-right: 0;
+        }
+
+        .btn {
+            background-color: #5e98f1;
+            color: white;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 20px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 10px auto;
+            margin-top: 35px;
+        }
+
+        .btn:hover {
+            background-color: #4a81d9;
+        }
+
+        .result {
+            margin-top: 40px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            color: #5e98f1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cotizador</h1>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="channels">Nro. Canales (Websites)</label>
+                <input type="number" id="channels" name="channels" min="1" value="1">
+            </div>
+
+            <div class="form-group">
+                <label for="categories">Nro. Categorías/Canal</label>
+                <input type="number" id="categories" name="categories" min="1" value="1">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="variables">Número De Variables</label>
+            <select id="variables" name="variables">
+                <option value="5">1-5</option>
+                <option value="10">6-10</option>
+            </select>
+        </div>
+
+        <button class="btn" onclick="calculateQuote()">Cotizar</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateQuote() {
+            const baseFee = 400;
+            const channelPrices = [80, 70, 60, 50, 40];
+            const additionalChannelCost = 30;
+            const variableBandCost = 40;
+            const categoryPrices = [30, 25, 20];
+            const additionalCategoryCost = 15;
+
+            let totalChannels = parseInt(document.getElementById('channels').value);
+            let variables = parseInt(document.getElementById('variables').value);
+            let totalCategories = parseInt(document.getElementById('categories').value);
+
+            let total = baseFee;
+
+            // Calculate channel cost
+            for (let i = 1; i < totalChannels; i++) {
+                if (i - 1 < channelPrices.length) {
+                    total += channelPrices[i - 1];
+                } else {
+                    total += additionalChannelCost;
+                }
+            }
+
+            // Calculate variable band cost
+            if (variables > 5) {
+                total += variableBandCost;
+            }
+
+            // Calculate category cost
+            for (let i = 1; i < totalCategories; i++) {
+                if (i - 1 < categoryPrices.length) {
+                    total += categoryPrices[i - 1];
+                } else {
+                    total += additionalCategoryCost;
+                }
+            }
+
+            // Display the result
+            document.getElementById('result').innerText = 'Total: ' + total.toFixed(2) + ' USD';
+        }
+    </script>
+
+</body>
+</html>
