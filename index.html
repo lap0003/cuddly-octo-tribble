@@ -143,6 +143,7 @@
             <select id="variables" name="variables">
                 <option value="5">1-5</option>
                 <option value="10">6-10</option>
+                <option value="15">11-15</option>
             </select>
         </div>
 
@@ -154,8 +155,8 @@
     <script>
         function calculateQuote() {
             const baseFee = 400;
-            const channelPrices = [80, 70, 60, 50, 40];
-            const additionalChannelCost = 30;
+            const channelPrices = [90, 90, 80, 70, 60];
+            const additionalChannelCost = 55;
             const variableBandCost = 40;
             const categoryPrices = [30, 25, 20];
             const additionalCategoryCost = 15;
