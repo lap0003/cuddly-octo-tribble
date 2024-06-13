@@ -14,7 +14,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: linear-gradient(135deg, #644B7C, #A066AB, #C593A1, #D9BCCB);
+            background: linear-gradient(130deg, #5e98f1,#4a80ff,#957dff);
             padding: 10px;
             box-sizing: border-box;
             overflow: hidden; /* Prevent scrolling */
@@ -155,11 +155,11 @@
     <script>
         function calculateQuote() {
             const baseFee = 400;
-            const channelPrices = [90, 90, 80, 70, 60];
-            const additionalChannelCost = 55;
+            const channelPrices = [200, 200, 160];
+            const additionalChannelCost = 160;
             const variableBandCost = 40;
-            const categoryPrices = [30, 25, 20];
-            const additionalCategoryCost = 15;
+            const categoryPrices = [100, 100, 80,];
+            const additionalCategoryCost = 80;
 
             let totalChannels = parseInt(document.getElementById('channels').value);
             let variables = parseInt(document.getElementById('variables').value);
